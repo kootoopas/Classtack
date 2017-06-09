@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/date_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/content_margin"
+        android:text="@string/date_header"
+        android:textAlignment="viewStart"
+        android:textColor="@color/lightGray" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/date_header"
+        android:layout_alignStart="@id/date_header"
+        android:layout_marginStart="70dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/lightGray" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/date_header"
+        android:layout_marginLeft="@dimen/content_margin"
+        android:layout_marginRight="@dimen/content_margin"
+        android:layout_marginTop="24dp"
+        android:textColor="#111"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_delete_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_note"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/content_margin"
+        android:layout_alignStart="@+id/content"
+        android:layout_alignEnd="@+id/content" />
+
+
+</RelativeLayout>
