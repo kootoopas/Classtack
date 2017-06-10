@@ -11,10 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.common.collect.Lists;
 import com.kootoopas.classtack.internals.BaseActivity;
 import com.kootoopas.classtack.models.Note;
 import com.kootoopas.classtack.services.NotesService;
+import com.kootoopas.classtack.services.NotesServiceSingleton;
+import com.kootoopas.classtack.utils.Services;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity {
 
-    private NotesService notesService;
+    private NotesService notesService = NotesServiceSingleton.getInstance();
     private ListView lvNotes;
     private List<Note> notes;
 
@@ -44,16 +48,15 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        _setupNotesApi();
         _getNotesFromServer();
 
         FloatingActionButton fabCreateNote = (FloatingActionButton) findViewById(R.id.fab_create_note);
-//        fabCreateNote.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity()
-//            }
-//        });
+        fabCreateNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(CreateNoteActivity.getIntent(MainActivity.this));
+            }
+        });
     }
 
     @Override
@@ -63,21 +66,17 @@ public class MainActivity extends BaseActivity {
         super.onPostResume();
     }
 
-    private void _setupNotesApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(NotesService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        notesService = retrofit.create(NotesService.class);
-    }
-
     private void _getNotesFromServer() {
         notesService.getAllNotes()
                 .enqueue(new Callback<List<Note>>() {
                     @Override
                     public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
                         if (response.isSuccessful()) {
+                            // Since the notes response is always sorted by id (ASC), list reversal
+                            // is sufficient to achieve newest to oldest order.
                             notes = response.body();
+                            Collections.sort(notes);
+
                             ArrayAdapter adapter = _getLvNotesAdapter();
                             lvNotes.setAdapter(adapter);
                         } else {

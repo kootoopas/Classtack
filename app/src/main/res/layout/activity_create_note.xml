@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kootoopas.classtack.CreateNoteActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appBarLayout">
+    </android.support.design.widget.AppBarLayout>
+
+    <com.kootoopas.classtack.ui.ActionEditText
+        android:id="@+id/et_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/appBarLayout"
+        android:ems="10"
+        android:layout_margin="@dimen/content_margin"
+        android:layout_alignParentEnd="true"
+        android:imeOptions="actionDone"
+        android:inputType="textAutoCorrect|textMultiLine"
+        android:maxLines="10" />
+
+
+</RelativeLayout>

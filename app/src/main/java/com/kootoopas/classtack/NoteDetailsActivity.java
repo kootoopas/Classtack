@@ -56,6 +56,7 @@ public class NoteDetailsActivity extends BaseActivity {
         tvContent.setText(content);
         tvDate.setText(date);
 
+        setActionBarTitle(R.string.note_details);
 
         Button btnDelete = (Button) findViewById(R.id.btn_delete_note);
 

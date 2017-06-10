@@ -8,4 +8,8 @@
     <string name="msg_note_deleted">Note deleted.</string>
     <string name="msg_note_not_deleted">Failed to delete note.</string>
     <string name="msg_note_already_deleted">Note already deleted.</string>
+    <string name="create_new_note">Add Note</string>
+    <string name="note_details">Note Details</string>
+    <string name="note_created">Note added.</string>
+    <string name="note_not_created">Whoops. Look like our server needs a break. I suppose you can try again later. ¯\_(ツ)_/¯</string>
 </resources>

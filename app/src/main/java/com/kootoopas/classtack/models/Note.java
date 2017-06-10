@@ -1,15 +1,27 @@
 package com.kootoopas.classtack.models;
 
+import android.support.annotation.NonNull;
+import android.text.format.DateFormat;
+import android.text.format.Time;
+import android.util.Log;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.Date;
 
 /**
  * Created by Fotis on 08/06/2017.
  */
 
-public class Note {
+public class Note implements Comparable<Note> {
 
+    @Expose(serialize = false)
     private int id;
+
+    @Expose
     private String content;
+
+    @Expose
     private long date;
 
     public Note() {
@@ -21,7 +33,7 @@ public class Note {
      */
     public Note(String content) {
         this.content = content;
-        this.date = new Date().getTime() / 1000L;
+        this.date = System.currentTimeMillis();
     }
 
     /**
@@ -53,7 +65,7 @@ public class Note {
     }
 
     public String getFormattedDate() {
-        return new Date(date).toString();
+        return DateFormat.format("MM/dd/yyyy hh:mm:ss a", new Date(date)).toString();
     }
 
     @Override
@@ -63,5 +75,10 @@ public class Note {
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull Note o) {
+        return (int) (o.getDate() - date);
     }
 }
